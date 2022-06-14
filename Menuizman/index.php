@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="CSS/style.css">
     <title>Accueil </title>
 </head>
+<?php
+try{
+        $db = new PDO(
+        'mysql:host=localhost;dbname=menuiz-jo;charset=utf8','root','');
+
+        if(isset($_POST['login'])){
+                
+        }
+}
+catch (Exception $e){
+        die('Erreur : ' . $e->getMessage());
+}
+?>
+
 <body>   
  <?php
  // HEADER
@@ -27,28 +41,24 @@
         //     echo '</div>';
         //     echo '</div>';
         //     echo '</div>';
-       
 
+        $produitStatement = $db->prepare('SELECT * FROM T_D_PRODUCT_PRD');
+
+        $produitStatement->execute();
+        $produits = $produitStatement->fetchAll();
+
+        $varx = 0;
         echo '<input type="search">';
-        echo '<div class="produit1" id="produit">';
-                echo'<img src="img/cloture1.png">';
-        echo '</div>';
-        echo '<div class="produit2" id="produit">';
-                echo'<img src="img/cloture2.png">';
-        echo '</div>';
-        echo '<div class="produit3" id="produit">';
-                echo'<img src="img/cloture3.png">';
-        echo '</div>';
-        echo '<div class="produit4" id="produit">';
-                echo'<img src="img/portail1.png">';
-        echo '</div>';
-        echo '<div class="produit5" id="produit">';
-                echo'<img src="img/portail2.png">';
-        echo '</div>';
-        echo '<div class="produit6" id="produit">';
-                echo'<img src="img/portail3.png">';
-        echo '</div>';
-   
+
+        foreach ($produits as $produit) {
+                ?>
+                <?php echo'<div class="produit'.$varx.'" id="produit">' ?>
+                        <?php echo '<img src="data:image/png;base64,'.base64_encode($produit['PRD_PICTURE']).'"/>';?>
+                        <p><?php echo $produit['PRD_DESCRIPTION']; ?></p>
+                <?php echo'</div>'?>
+                
+                <?php $varx += 1;
+                }
 
     echo "</main>";
     // FOOTER

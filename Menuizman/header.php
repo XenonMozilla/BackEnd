@@ -1,7 +1,19 @@
 
 <header>
+<?php 
+    $utilisateur = "";
+?>
         <nav>
-            <h3><?php echo "Utilisateur : Test "; ?> </h3>
+            <?php
+            if($utilisateur == ""){
+                echo '<a href="login.php">Connectez-vous ici</a>';
+            }
+            else{
+                echo "<h3> Utilisateur : ".$utilisateur."</h3>";
+            }
+            
+            
+            ?>
             <a href="index.php">Accueil</a>
            
            
