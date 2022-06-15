@@ -8,13 +8,19 @@
     <title>Accueil </title>
 </head>
 <?php
-try{
+try{ // HEADER
+
+ include "header.php";
         $db = new PDO(
         'mysql:host=localhost;dbname=menuiz-jo;charset=utf8','root','');
-
-        if(isset($_POST['login'])){
+      
+        
+        if (isset($_SESSION["name"])) {
                 
-        }
+                
+                } else {
+                header("location:login.php");
+                }
 }
 catch (Exception $e){
         die('Erreur : ' . $e->getMessage());
@@ -23,8 +29,7 @@ catch (Exception $e){
 
 <body>   
  <?php
- // HEADER
- include "header.php";
+
     echo "<main>";
 
         //     echo '<div id="admin-box" class="box-container">';
@@ -47,20 +52,20 @@ catch (Exception $e){
         $produitStatement->execute();
         $produits = $produitStatement->fetchAll();
 
-        $varx = 0;
         echo '<input type="search">';
 
         foreach ($produits as $produit) {
                 ?>
-                <?php echo'<div class="produit'.$varx.'" id="produit">' ?>
-                        <?php echo '<img src="data:image/png;base64,'.base64_encode($produit['PRD_PICTURE']).'"/>';?>
+                <?php echo'<div class="produit'.$produit['PRD_ID'].'" id="produit">' ?>
+                        <?php echo '<img href="produit.php?"'.$produit['PRD_ID'].'" src="data:image/png;base64,'.base64_encode($produit['PRD_PICTURE']).'"/>';?>
                         <p><?php echo $produit['PRD_DESCRIPTION']; ?></p>
                 <?php echo'</div>'?>
                 
-                <?php $varx += 1;
+                <?php
                 }
 
     echo "</main>";
+    include "minipanier.php";
     // FOOTER
      include "footer.php";
 ?>

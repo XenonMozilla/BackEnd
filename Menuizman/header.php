@@ -1,19 +1,12 @@
 
 <header>
 <?php 
-    $utilisateur = "";
-?>
+  session_start();
+
+echo '<H1>Bienvenue ' . $_SESSION["name"] . ' !</H1>';
+              echo '<a href="logout.php">Se déconnecter</a>'; ?>
         <nav>
-            <?php
-            if($utilisateur == ""){
-                echo '<a href="login.php">Connectez-vous ici</a>';
-            }
-            else{
-                echo "<h3> Utilisateur : ".$utilisateur."</h3>";
-            }
-            
-            
-            ?>
+        
             <a href="index.php">Accueil</a>
            
            

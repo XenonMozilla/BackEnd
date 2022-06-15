@@ -3,7 +3,7 @@ session_start();
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "menuiz-jo";
+$database = "menuiz";
 $message = "";
 try {
     $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password);
@@ -26,16 +26,12 @@ try {
 
             $count = count($users);
 
-            if ($count >= 1) {
+            if ($count > 0) {
                 foreach ($users as $user) {
-
-
                     $_SESSION["name"] = $user['USR_FIRSTNAME'] . ' ' . $user['USR_LASTNAME'];
-                    
                 }
-            
-            header("location:index.php");
-                
+
+                header("location:index.php");
             } else {
                 $message = '<label>Wrong Data</label>';
             }
@@ -47,25 +43,34 @@ try {
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>MenuizMan - Login</title>
-    </head>
-        
-    <body>
+
+<head>
+    <title>Menuiz - Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <br />
+    <div class="container" style="width:500px;">
         <?php
-            if (isset($message)) {
-                echo '<label class="text-danger">' . $message . '</label>';
-            }
+        if (isset($message)) {
+            echo '<label class="text-danger">' . $message . '</label>';
+        }
         ?>
-
-         <form method="post">
-            <input type="text" class="LogEtPass" name="username" placeholder="Nom d'utilisateur">
-            <input type="password" class="LogEtPass" name="password" placeholder="Mot de passe">
-        
-        
-
-            <input type="submit" name="login" class="btn btn-primary" value="Login" />
+        <h3 align="">Hello </h3><br />
+        <form method="post">
+            <label>Email</label>
+            <input type="text" name="username" class="form-control" />
+            <br />
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" />
+            <br />
+            <input type="submit" name="login" class="btn btn-info" value="Login" />
         </form>
-    </body>
-</html>
+    </div>
+    <br />
+</body>
 
+</html>
