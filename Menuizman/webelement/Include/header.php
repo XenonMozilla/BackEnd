@@ -2,6 +2,10 @@
 <header>
         <nav>
             <a href="../../session.php">Accueil</a>
+            <?php
+            $nmbrElem = count($_SESSION['panier']['libelleProduit']);
+            echo '<a href="../../Panier.php"> Panier ('.$nmbrElem.' article) </a>';
+            ?>
             
             
             

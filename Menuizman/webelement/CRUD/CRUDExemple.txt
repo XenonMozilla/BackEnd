@@ -1,0 +1,48 @@
+<?php
+
+class Modele{ //changer nom modele
+
+    private $idc;
+    private function connexion() {
+
+    $this->idc = new PDO("mysql:host=localhost;  dbname=menuiz-jo", 'root', '');
+    }
+
+    //C
+
+    public function create(){ // changer nom fonct et info
+        $this -> connexion();
+        $res = $this->idc->prepare("INSERT into t_d_() values()");
+        $res -> execute();
+    }
+
+
+    //R
+
+    public function readAll(){
+        $this -> connexion();
+        $res = $this->idc->prepare("SELECT * from t_d_");
+        $res -> execute();
+        return $res;
+    }
+
+
+    //U
+
+        public function Update(){
+        $this -> connexion();
+        $res = $this->idc->prepare("UPDATE t_d_ SET  where _ID = ".."");
+        $res -> execute();
+    }
+
+    //D
+
+    public function Delete(){
+        $this -> connexion();
+        $res = $this->idc->prepare("DELETE t_d_ where  = ".."");
+        $res -> execute();
+    }
+
+}
+
+?>

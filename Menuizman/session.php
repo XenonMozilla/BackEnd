@@ -23,9 +23,6 @@ $_SESSION["prenom_nom"];
 * {
 font-family: arial;
 }
-body {
-margin: 20px;
-}
 h2 {
 text-align: center;
 color: pink;
@@ -44,32 +41,34 @@ text-decoration: underline;
 <body>
 <?php include "webelement/include/header.php";?>
 <h2 class="bienvenue"><?php  echo  $bienvenue  ?></h2>
-<!-- <?php include"../Panier/panier.php";?> -->
+
 <?php
 
- $mysqlConnection = new PDO('mysql:host=localhost;dbname=menuiz-jo;charset=utf8', 'root', '');
- $produitStatement = $mysqlConnection->prepare('SELECT * FROM T_D_PRODUCT_PRD');
+include 'webelement/include/produits.php'
 
- $produitStatement->execute();
- $produits = $produitStatement->fetchAll();
-echo '<main>';
- echo '<div id="product-box" class="box-container">';
-    echo '<h1 class="title"> Nos produits : </h1>';
+//  $mysqlConnection = new PDO('mysql:host=localhost;dbname=menuiz-jo;charset=utf8', 'root', '');
+//  $produitStatement = $mysqlConnection->prepare('SELECT * FROM T_D_PRODUCT_PRD');
 
-/* Création d'un formulaire pour chaque produit de la base de données. */
+//  $produitStatement->execute();
+//  $produits = $produitStatement->fetchAll();
+// echo '<main>';
+//  echo '<div id="product-box" class="box-container">';
+//     echo '<h1 class="title"> Nos produits : </h1>';
 
-foreach ($produits as $produit) {
+// /* Création d'un formulaire pour chaque produit de la base de données. */
+
+// foreach ($produits as $produit) {
             
-            echo '<a href="produit.php?IdProduit='.$produit['PRD_ID'].'" id="card-'.$produit['PRD_ID'].'" class="card-produit card-'.$produit['PRD_ID'].'">';
-                echo '<img src="data:image/jpeg;base64,'.base64_encode($produit['PRD_PICTURE']).'" alt="Produit : ID = '.$produit['PRD_ID'].'"/>';
-                echo '<div id="product-'.$produit['PRD_ID'].'" class="container-product">';
-                    echo '<h3 class="card-title">'. $produit['PRD_DESCRIPTION'].' </h3>';
-                    echo '<p class="prix">'.$produit['PRD_PRICE'].'€</p>';
-                    echo '</div>';
-            echo '</a>';
-    }
-    echo '</div>';
-    echo '</main>';
+//             echo '<a href="produit.php?IdProduit='.$produit['PRD_ID'].'" id="card-'.$produit['PRD_ID'].'" class="card-produit card-'.$produit['PRD_ID'].'">';
+//                 echo '<img src="data:image/jpeg;base64,'.base64_encode($produit['PRD_PICTURE']).'" alt="Produit : ID = '.$produit['PRD_ID'].'"/>';
+//                 echo '<div id="product-'.$produit['PRD_ID'].'" class="container-product">';
+//                     echo '<h3 class="card-title">'. $produit['PRD_DESCRIPTION'].' </h3>';
+//                     echo '<p class="prix">'.$produit['PRD_PRICE'].'€</p>';
+//                     echo '</div>';
+//             echo '</a>';
+//     }
+//     echo '</div>';
+//     echo '</main>';
     ?>
 </body>
 </html>
